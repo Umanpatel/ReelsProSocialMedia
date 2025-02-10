@@ -13,7 +13,7 @@
     // in this schema we are creating one object
     {
         email: {type: String, required: true, unique: true},
-        password: {tyre: String, required: true},
+        password: {type: String, required: true},
     },
     { timestamps: true }
  );
