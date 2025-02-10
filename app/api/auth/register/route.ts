@@ -45,3 +45,20 @@ export async function POST(request: NextRequest){
         );
     }
 }
+
+// Below code is frontend, what we have done using postman same thing done by below code 
+/*
+// if you want to send request from frontend
+// for that simply send fetch request but from where:
+// send some parameters: method and headers
+const res = fetch("/api/auth/register", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    // once you collect data just send them as it is using body parameter
+    // this goes as a "promise" and take the result using res.json
+    body: JSON.stringify({email, password}) // this is promise
+})
+
+res.json()
+
+*/
