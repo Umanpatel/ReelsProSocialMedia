@@ -5,7 +5,8 @@
     email: string;
     password: string;
     _id?: mongoose.Types.ObjectId; // we can not define direct string type bez it's a mongoDB's object
-   
+    createdAt?: Date;
+    updateAt?: Date
  }
 
  const userSchema = new Schema<IUser>(
