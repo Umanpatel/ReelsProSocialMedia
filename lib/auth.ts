@@ -41,11 +41,9 @@ import bcrypt from "bcryptjs";
                     const user = await User.findOne({email: credentials.email})
 
                     // if there is no user found then throw error 
-                    
-                    /*
                     if(!user){
                         throw new Error("No User Found.");
-                    }*/
+                    }
 
                     // If User is exist the we need to check password.
                     // Checking password we need bcrypt.
