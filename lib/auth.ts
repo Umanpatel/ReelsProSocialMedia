@@ -49,11 +49,11 @@ import bcrypt from "bcryptjs";
                     // Checking password we need bcrypt.
                     // Import bcrypt first. " import bcrypt from "bcryptjs"; " 
                     
-                    /*
+                    
                     const isValid = await bcrypt.compare(
                         credentials.password,
                         user.password
-                    )  */
+                    )
 
                     // if user is not valid, throw error.
                     
