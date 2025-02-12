@@ -48,29 +48,22 @@ import bcrypt from "bcryptjs";
                     // If User is exist the we need to check password.
                     // Checking password we need bcrypt.
                     // Import bcrypt first. " import bcrypt from "bcryptjs"; " 
-                    
-                    
                     const isValid = await bcrypt.compare(
                         credentials.password,
                         user.password
                     )
 
                     // if user is not valid, throw error.
-                    
-                    /*
                     if(!isValid){
                         throw new Error("Invalid Password");
-                    }*/
+                    }
 
                     // And if password Matched then return one object
                     // You write whatever values in this object, all those values works in session.
-                    
-                    /*
                     return {
                         id: user._id.toString(), // convert Id into string because id is a mongoose object type.
                         email: user.email 
-                    }*/
-
+                    }
                 } 
                 catch (error) {
                     throw error
