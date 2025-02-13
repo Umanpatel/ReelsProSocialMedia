@@ -72,4 +72,42 @@ import bcrypt from "bcryptjs";
             }
         }) 
     ],
+
+    /*
+    Session ni pase malse ek object jenu name session j hoy chhe. 
+    Aa session object thi token access kari sako pan ena mate “strategy” lakhavi pade.
+    Strategy session object ni ander malse. 
+    Strategy ma “jwt” lakho tyare callbacks ma je session chhe ema jwt token malse. 
+    Etle jya sudhi strategy ma jwt na lakho tya sudhi token access nai kari sako. 
+    And aa ‘async session’ method ma session return karavu j pade
+    Jo session ni ander user malse to aapde user pasethi values lai ne token ma store karavi sakiye.
+    Apde strategy jwt lakheli etle next auth kam karse jwt ni jem. 
+    */ 
+
+    callbacks: {
+        // async jwt({token, user}){
+        //     if(user){
+        //         token.id=user.id
+        //     }
+        //     return token
+        // },
+        async session({session, token}){
+            
+            if(session.user){
+                session.user.id = token.id as string
+            }
+            
+            return session
+        }
+    },
+    // pages: {
+    //     signIn: "/login",
+    //     error: "/login"
+    // },
+    // session:{
+    //     strategy: "jwt",
+    //     maxAge: 30 * 24 * 60 * 60
+    // },
+    // final note lakvi padse je chhe secret
+    secret: process.env.NEXTAUTH_SECRET
  } 
