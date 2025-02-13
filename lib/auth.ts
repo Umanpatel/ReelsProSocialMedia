@@ -100,10 +100,10 @@ import bcrypt from "bcryptjs";
             return session
         }
     },
-    // pages: {
-    //     signIn: "/login",
-    //     error: "/login"
-    // },
+    pages: {
+        signIn: "/login",
+        error: "/login"
+    },
     session:{
         strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60
