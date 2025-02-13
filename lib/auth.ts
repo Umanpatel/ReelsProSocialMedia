@@ -85,12 +85,12 @@ import bcrypt from "bcryptjs";
     */ 
 
     callbacks: {
-        // async jwt({token, user}){
-        //     if(user){
-        //         token.id=user.id
-        //     }
-        //     return token
-        // },
+        async jwt({token, user}){
+            if(user){
+                token.id=user.id
+            }
+            return token
+        },
         async session({session, token}){
             
             if(session.user){
@@ -104,10 +104,10 @@ import bcrypt from "bcryptjs";
     //     signIn: "/login",
     //     error: "/login"
     // },
-    // session:{
-    //     strategy: "jwt",
-    //     maxAge: 30 * 24 * 60 * 60
-    // },
+    session:{
+        strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60
+    },
     // final note lakvi padse je chhe secret
     secret: process.env.NEXTAUTH_SECRET
  } 
