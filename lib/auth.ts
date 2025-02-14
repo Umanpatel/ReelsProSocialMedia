@@ -110,4 +110,4 @@ import bcrypt from "bcryptjs";
     },
     // final note lakvi padse je chhe secret
     secret: process.env.NEXTAUTH_SECRET
- } 
+ };
