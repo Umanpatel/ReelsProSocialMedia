@@ -46,7 +46,6 @@ export default withAuth(
         }
     }
 )
-
 // Have main point: middleware run kya kya thay.
 // Ena mathe config export karvu padse. 
 // Config su karse ke kya kya path par middleware run thavu joiye e badha path mentioned kari do 
