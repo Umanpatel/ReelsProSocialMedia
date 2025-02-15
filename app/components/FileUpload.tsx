@@ -54,7 +54,6 @@ export default function FileUpload({
         }
     };
 
-
     const validateFile = (file: File) => {
         // check is its a video file or not
         if(fileType === "video"){
@@ -108,6 +107,25 @@ export default function FileUpload({
                 useUniqueFileName={true}
                 folder={fileType === "video" ? "/videos" : "/images"}
             />
+            
+        {
+            // add lucid react
+            // conditional render karsu 
+            // for uploading state
+            // if uploading state true hase to conditionally component render karavsu
+            uploading && (
+                // text primary bez we are using daisyUI 
+                <div className="flex items-center gap-2 text-sm text-primary"> 
+                    <Loader2 className="animate-spin w-4 h-4"/>
+                    <span>Uploading...</span>
+                </div>
+            )
+        }
+        {error && (
+            <div className="text-error text-sm"></div>
+        )
+        }
+
         </div>
     );
 } 
