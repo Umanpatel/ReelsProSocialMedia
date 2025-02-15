@@ -121,11 +121,11 @@ export default function FileUpload({
                 </div>
             )
         }
-        {error && (
+        {   
+            error && (
             <div className="text-error text-sm"></div>
-        )
+            )
         }
-
         </div>
     );
 } 
