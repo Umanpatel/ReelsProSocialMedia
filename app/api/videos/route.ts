@@ -1,6 +1,9 @@
+import { authOptions } from "@/lib/auth";
 import { connectToDatabase } from "@/lib/db";
-import Video from "@/models/Video";
-import { NextResponse } from "next/server";
+import Video, { IVideo } from "@/models/Video";
+import { getServerSession } from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
+
 export async function GET(){
     // a function nu kam chhe ke database ma jao
     //jetla pan videos ley ne aavo and akho array as it is pass on karo
@@ -24,6 +27,62 @@ export async function GET(){
     } catch (error) {
         return NextResponse.json(
             {error: " Failed to fetch Videos"},
+            {status: 200}
+        )
+    }
+}
+
+// Koi e video Post karvo hoy to ena mate post method lakhvi padse
+// Post method hoy to request pass karvu padse kem ke request mathi data extract karse.
+// E request no datatype hase NextRequest. 
+export async function POST(request: NextRequest){
+    //First Only logged In user is allow to post videos, so add try catch for that
+    try {
+        // Next-auth thi malse get server session
+        // Ema auth options pan provide karva pade.
+        // have aapnane session mali jase
+        const session = await getServerSession(authOptions)
+        // if session not found then use logged In nathi.
+        if(!session){
+            return NextResponse.json({error:"Unauthorized"}, {status: 401});
+        }
+
+        // If session hase to 
+        await connectToDatabase()
+        // extract all data from body
+        // a data aavya ena type pan correct hoy ena mate video no interface lai levo 
+        const body: IVideo = await request.json();
+        // Validation
+        if(
+            !body.title || 
+            !body.description ||
+            !body.videoUrl||
+            !body.thumbnailUrl
+        ) {
+            return NextResponse.json(
+                {error:"Missing Required Fields"},
+                {status: 400}
+            );
+        }
+        // default value ne aapde configure kari laisu
+        const videoData = {
+            ...body,
+            controls: body.controls ?? true,
+            transofrmation: {
+                height: 1920,
+                width: 1080,
+                quality: body.transformation?.quality ?? 100 
+            }
+        }
+        
+        //  Aa videoData nu Video model create karsu 
+        // Aa newVideo ne return karsu
+        const newVideo = await Video.create(videoData)
+        return NextResponse.json(newVideo)
+
+    } catch (error) {
+        return NextResponse.json(
+            {error: " Failed to create a Videos"},
             {status: 200}
         )
     }
