@@ -1,6 +1,6 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { ImageKitProvider, IKUpload } from "imagekitio-next";
+import React, {  useState } from "react";
+import {  IKUpload } from "imagekitio-next";
 import { Loader2 } from "lucide-react";
 import { IKUploadResponse } from "imagekitio-next/dist/types/components/IKUpload/props";
 
@@ -9,10 +9,6 @@ interface FileUploadProps {
     onProgress?: (progress: number) => void
     fileType?: "image" | "video"
 }
-
-const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
-const urlEndpoint = process.env.NEXT_PUBLIC_URL_ENDPOINT;
-
 
 export default function FileUpload({
     onSuccess,
@@ -77,7 +73,6 @@ export default function FileUpload({
                 return false
             }
         }
-
         // Check Image file or not
         else{
             // Image na pan bov types hoy chhe, ena mate validTypes banaviye
@@ -95,10 +90,8 @@ export default function FileUpload({
         return false   
     } 
 
-
     return (
         <div className="space-y-2">
-            
             <IKUpload
             // IKUpload is a self containing component
                 fileName={fileType === "video" ? "video" : "image"} 
@@ -114,23 +107,7 @@ export default function FileUpload({
                 validateFile={validateFile}
                 useUniqueFileName={true}
                 folder={fileType === "video" ? "/videos" : "/images"}
-                transformation={{
-                    pre: "l-text,i-Imagekit,fs-50,l-end",
-                    post: [
-                        {
-                            type: "transformation",
-                            value: "w-100",
-                        },
-                    ],
-                }}
-                style={{ display: 'none' }} // hide the default input and use the custom upload button
-                ref={ikUploadRefTest}
             />
-            <p>Custom Upload Button</p>
-            {ikUploadRefTest && <button onClick={() => ikUploadRefTest.current.click()}>Upload</button>}
-            <p>Abort upload request</p>
-            {ikUploadRefTest && <button onClick={() => ikUploadRefTest.current.abort()}>Abort request</button>}
-            {/* ...other SDK components added previously */}
         </div>
     );
-}
+} 
