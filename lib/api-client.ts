@@ -5,8 +5,8 @@ export type VideoFormData = Omit<IVideo, "_id">
 
  // jyare pan Fetch Options aapsu tyare aapde ema object pass karsu.
  type FetchOptions = {
-    method? : "GET" | "POST" | "PUT" | "DELETE";
-    body? : any;
+    method?: "GET" | "POST" | "PUT" | "DELETE";
+    body?: any;
     headers? : Record<string, string> // Record ek key value pair chhe
  }
  
@@ -29,13 +29,13 @@ export type VideoFormData = Omit<IVideo, "_id">
         // call kevi rite karsu 
         // back tik ni ander /api and ene concatenate karsu endpoint sathe. 
         // and pachhi options add karsu: method, headers
-        const res = await fetch(`/api${endpoint}`,{
+        const response = await fetch(`/api${endpoint}`,{
             method, 
             headers: defaultHeaders,
             body: body ? JSON.stringify(body) : undefined
         })
 
-        if (!res.ok){
+        if (!response.ok){
             throw new Error(await response.text());
         }
         return response.json()
