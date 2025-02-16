@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
-
 function  Register() {
     // first amuk state banaviye:
     const [email, setEmail] = useState("")
@@ -46,7 +45,7 @@ function  Register() {
             // response ok nathi, kaik missing hoy to resgitration failed thase
             if(!res.ok)
             {
-                setError("Registration Failed")
+                throw new Error(data.error || "Registration failed");
             }
 
             // if response ok to registration successful
