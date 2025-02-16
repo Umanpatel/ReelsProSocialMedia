@@ -15,7 +15,7 @@ function Header() {
         try {
             await signOut()
         } catch (error) {
-
+            return error
         }
     }
     return (
