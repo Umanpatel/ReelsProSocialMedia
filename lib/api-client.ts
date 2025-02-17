@@ -6,7 +6,7 @@ export type VideoFormData = Omit<IVideo, "_id">
  // jyare pan Fetch Options aapsu tyare aapde ema object pass karsu.
  type FetchOptions = {
     method?: "GET" | "POST" | "PUT" | "DELETE";
-    body?: any;
+    body?: unknown;
     headers? : Record<string, string> // Record ek key value pair chhe
  }
  

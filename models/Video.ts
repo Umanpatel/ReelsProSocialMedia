@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 
 // create an object video_dimentions
 // Make a tranformation in our platform that video can be available only in reels format
@@ -11,6 +11,7 @@ export const VIDEO_DIMENTIONS = {
 
 export interface IVideo
 {
+    _id?: mongoose.Types.ObjectId;
     title: string;
     description: string;
     videoUrl: string;
