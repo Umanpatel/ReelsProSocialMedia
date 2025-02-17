@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 // create an object video_dimentions
 // Make a tranformation in our platform that video can be available only in reels format
@@ -9,8 +9,8 @@ export const VIDEO_DIMENTIONS = {
 } as const //  so when we use video dimentions it will treate contantly.
 // advantage of this const is that we can introduce additional property: "transformation"
 
-export interface IVideo{
-    _Id?: mongoose.Types.ObjectId;
+export interface IVideo
+{
     title: string;
     description: string;
     videoUrl: string;
@@ -20,9 +20,7 @@ export interface IVideo{
         height: number
         width: number;
         quality?: number
-    }
-    createdAt?: Date;
-    updateAt?: Date
+    };
 }
 
 const videoSchema = new Schema<IVideo>({
@@ -38,7 +36,7 @@ const videoSchema = new Schema<IVideo>({
     }
 }, { timestamps: true})
 
-const Video = models?.Video || model<IVideo>("User", videoSchema)
+const Video = models?.Video || model<IVideo>("Video", videoSchema)
 
  export default Video;
 
